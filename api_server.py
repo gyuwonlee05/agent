@@ -56,3 +56,11 @@ def chat(req: ChatRequest):
         return {"answer": answer, "meds": req.meds}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# 'python api_server.py' 로 직접 실행할 때도 Railway의 PORT 환경변수를 사용
+if __name__ == "__main__":
+    import os
+    import uvicorn
+    port = int(os.environ.get("PORT", 8000))   # PORT 가 없으면 로컬용 8000
+    uvicorn.run(app, host="0.0.0.0", port=port)
