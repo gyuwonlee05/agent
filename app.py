@@ -1,5 +1,5 @@
 """
-app.py — 약손: 복약안전 웹 화면 (Streamlit 시연용)
+app.py — 약속: 복약안전 웹 화면 (Streamlit 시연용)
 ================================================================
 화면(UI)만 담당하고, 챗봇/판정 로직은 chatbot_core 부품을 갖다 쓴다.
 실행:  streamlit run app.py
@@ -10,7 +10,7 @@ import streamlit as st
 import chatbot_core as cc      # 화면과 분리된 챗봇/판정 '부품'
 
 # ── 페이지 기본 설정 ───────────────────────────────
-st.set_page_config(page_title="약손 - 복약안전 도우미", page_icon="💊", layout="centered")
+st.set_page_config(page_title="약속 - 복약안전 도우미", page_icon="💊", layout="centered")
 
 # ── 어르신용 큰 글씨 + 색 구분 스타일 ───────────────
 st.markdown("""
@@ -25,7 +25,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("💊 약손 — 복약안전 도우미")
+st.title("💊 약속 — 복약안전 도우미")
 st.caption("이 서비스는 의료행위가 아니라 정보 제공입니다. 정확한 판단은 약사·의사와 상담하세요.")
 
 # ── 세션 상태(화면을 새로 그려도 유지되는 기억) ──────
@@ -135,7 +135,7 @@ if q:
     with st.chat_message("user"):
         st.markdown(q)
     with st.chat_message("assistant"):
-        with st.spinner("약손이 확인하는 중..."):
+        with st.spinner("약속이 확인하는 중..."):
             answer = cc.get_chatbot_response(st.session_state.chat, st.session_state.meds)
         st.markdown(answer)
     st.session_state.chat.append({"role": "assistant", "content": answer})

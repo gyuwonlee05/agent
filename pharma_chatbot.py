@@ -1,5 +1,5 @@
 """
-pharma_chatbot.py — 약손: 복약안전 AI 챗봇 (터미널 버전)
+pharma_chatbot.py — 약속: 복약안전 AI 챗봇 (터미널 버전)
 ================================================================
 핵심 원칙:
   · 병용금기/약-음식 판단은 '챗봇의 지식'이 아니라 '도구 호출 결과'로만 한다.
@@ -216,7 +216,7 @@ DISPATCH = {
 }
 
 
-SYSTEM = """너는 '약손'이라는 복약안전 안내 도우미다. 한국어로, 어르신도 이해하기 쉽게 말한다.
+SYSTEM = """너는 '약속'이라는 복약안전 안내 도우미다. 한국어로, 어르신도 이해하기 쉽게 말한다.
 
 반드시 지켜라:
 1) 두 약을 같이 먹어도 되는지 등 '병용금기' 판단은 절대 스스로 하지 말고 check_interactions 도구를 호출해 그 결과로만 답하라.
@@ -277,10 +277,10 @@ def main():
         safe_print("=== 자동 시연 모드 ===")
         for q in DEMO_QUESTIONS:
             safe_print("\n[나]   " + q)
-            safe_print("[약손] " + chat(q))
+            safe_print("[약속] " + chat(q))
         return
 
-    safe_print("=== 약손 챗봇 (종료: quit) ===")
+    safe_print("=== 약속 챗봇 (종료: quit) ===")
     while True:
         try:
             q = input("\n[나] ").strip()
@@ -288,7 +288,7 @@ def main():
             break
         if q.lower() in ("quit", "exit", "종료", ""):
             break
-        safe_print("[약손] " + chat(q))
+        safe_print("[약속] " + chat(q))
     safe_print("\n대화를 마칩니다. 건강하세요.")
 
 
