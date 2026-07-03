@@ -16,6 +16,7 @@ api_server.py — 약속 API 서버 (FastAPI)
 """
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
 import chatbot_core as cc                          # 데이터/챗봇/도구 재사용
@@ -226,10 +227,15 @@ class ChatResponse(BaseModel):
 
 
 @app.get("/")
-def root():
-    return {"status": "ok", "app": "약속 API",
-            "endpoints": ["/api/patients", "/api/ocr/text", "/api/ocr/image",
-                          "/api/ocr/{id}", "/api/analyze", "/api/speech/transcribe", "/chat"]}
+def home():
+    """앱 화면(약속_app.html)을 서버가 직접 보여준다."""
+    return FileResponse("약속_app.html")
+
+
+@app.get("/health")
+def health():
+    """서버 살아있는지 확인용."""
+    return {"status": "ok", "app": "약속 API"}
 
 
 @app.post("/chat", response_model=ChatResponse)
