@@ -232,18 +232,6 @@ def root():
                           "/api/ocr/{id}", "/api/analyze", "/api/speech/transcribe", "/chat"]}
 
 
-@app.get("/api/debug/env")
-def debug_env():
-    """진단용: API 키가 서버 환경에 들어왔는지 예/아니오만 (값은 노출 안 함)."""
-    import os
-    a = os.environ.get("ANTHROPIC_API_KEY", "")
-    o = os.environ.get("OPENAI_API_KEY", "")
-    return {
-        "ANTHROPIC_API_KEY_있음": bool(a), "ANTHROPIC_길이": len(a),
-        "OPENAI_API_KEY_있음": bool(o), "OPENAI_길이": len(o),
-    }
-
-
 @app.post("/chat", response_model=ChatResponse)
 def chat(req: ChatRequest):
     try:
